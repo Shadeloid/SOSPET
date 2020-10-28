@@ -1,2 +1,0 @@
-# SOSPET
- Projeto de escola
