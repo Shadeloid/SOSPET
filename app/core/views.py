@@ -2,9 +2,13 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from 
 
 # Create your views here.
 
+@login_required(Login_url='/login')
+def index(request):
+    return render(request, 'index.html')
 
 def login_user(request):
     return render(request, 'login.html')
@@ -19,7 +23,8 @@ def submit_login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/login/#')
+            return redirect('/')
+
         else:
-            Messages.Error(request, 'Utilizador e/ou senha inválido. Vá para o gulag.' )
+            messages.error(request, 'Utilizador e/ou senha inválido. Vá para o gulag.' )
     return redirect('/login/')
