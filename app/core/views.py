@@ -11,8 +11,14 @@ from .models import Pet
 
 def list_all_pets(request):
     pet = Pet.objects.filter(active=True)
-
     return render(request, 'list.html',{'pet':pet})
+
+def pet_detail(request, id):
+    pet = Pet.objects.get(active=True, id=id)
+
+def list_user_pets(request):
+    pet = Pet.objects.filter(active=True, user=request.user)
+    return render(request, 'list.html', {'pet':pet})
 
 def logout_user(request):
     logout(request)
