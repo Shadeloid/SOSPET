@@ -6,9 +6,11 @@ from django.contrib.auth.decorators import login_required
 from .models import Pet
 # Create your views here.
 
+
+def register_pet(request):
+    return render(request, 'register-pet.html')
+
 @login_required(login_url='/login/')
-
-
 def list_all_pets(request):
     pet = Pet.objects.filter(active=True)
     return render(request, 'list.html',{'pet':pet})

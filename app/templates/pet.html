@@ -4,15 +4,24 @@
 
 <h1 class="text-center">Detalhes do Animal de estimação</h1>
 
-<div class="container">
+<div class="container mp-4 mb-4">
     <div class="row">
         <div class="col-sm-4">
-            <div style="border-color: green; border-style: solid; width: 356px; height: 300%">
+            <div style="border-color: green; border-style: solid; width: 356px; height: 100%">
                 <img src="{{ pet.photo.url }}" width="350" height="263" style="margin-top: 16px;"> 
             </div>
         </div>
         <div class="col-sm-8">
            <p>{{ pet.description }}</p>
+           <h1>Contato</h1>
+           <p><b>Telelefone: </b>{{ pet.phone}}</p>
+           <p><b>E-mail: </b>{{ pet.email }}</p>
+           {% if request.user == pet.user %}
+           <a href="#">
+            <button type="button" class="btn btn-primary">Alterar</button>
+           </a>
+            <button type="button" class="btn btn-danger">Excluir</button>
+            {% endif %}
         </div>
     </div>
 </div>
