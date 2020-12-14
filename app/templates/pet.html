@@ -4,6 +4,29 @@
 
 <h1 class="text-center">Detalhes do Animal de estimação</h1>
 
+<div class="modal fade" id="modal_confirm">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <h4 class="modal-title">Deseja excluir o cachorinho? :(</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <div class="modal-body text-right">
+         <a href="/pet/delete/{{ pet.id}}/">
+            <button type="button" class="btn btn-danger">
+                EXCLUIR
+            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                CANCELAR
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 <div class="container mp-4 mb-4">
     <div class="row">
         <div class="col-sm-4">
@@ -17,10 +40,12 @@
            <p><b>Telelefone: </b>{{ pet.phone}}</p>
            <p><b>E-mail: </b>{{ pet.email }}</p>
            {% if request.user == pet.user %}
-           <a href="#">
+           <a href="/pet/register/?id={{ pet.id }}">
             <button type="button" class="btn btn-primary">Alterar</button>
            </a>
-            <button type="button" class="btn btn-danger">Excluir</button>
+            <button type="button" class="btn btn-danger" data-toggle="modal"
+            data-target="#modal_confirm">Excluir</button>
+           
             {% endif %}
         </div>
     </div>
